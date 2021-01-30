@@ -22,10 +22,6 @@ class SignInScreen extends StatelessWidget {
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(PERSIST_SESSION_KEY, response.data.persistSessionString);
-      String testStr = prefs.getString(PERSIST_SESSION_KEY);
-      print('testStr: $testStr');
-      bool exist = prefs.containsKey(PERSIST_SESSION_KEY);
-      print('exist: $exist');
 
       final title = 'Welcome ${response.data.user.email}';
       Navigator.pushReplacement(

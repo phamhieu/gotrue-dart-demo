@@ -18,6 +18,11 @@ class SignUpScreen extends StatelessWidget {
     if (response.error != null) {
       alertModal.show(context,
           title: 'Sign up failed', message: response.error.message);
+    } else if (response.data == null && response.user == null) {
+      alertModal.show(context,
+          title: 'Email verification required',
+          message:
+              "Please check your email and follow the instructions to verify your email address.");
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(PERSIST_SESSION_KEY, response.data.persistSessionString);
