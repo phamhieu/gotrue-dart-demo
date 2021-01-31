@@ -28,7 +28,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
 
-  gotrue_client: ^0.0.1-dev.4
+  gotrue: ^0.0.1-dev.4
   shared_preferences: ^0.5.12+4
 
 dev_dependencies:

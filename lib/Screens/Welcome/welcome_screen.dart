@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gotrue_client/gotrue_client.dart';
+import 'package:gotrue/gotrue.dart';
 import 'package:gotrue_dart_example/Screens/Signin/signin_screen.dart';
 import 'package:gotrue_dart_example/components/alert_modal.dart';
 import 'package:gotrue_dart_example/components/rounded_button.dart';

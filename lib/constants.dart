@@ -1,4 +1,4 @@
-import 'package:gotrue_client/gotrue_client.dart';
+import 'package:gotrue/gotrue.dart';
 
 const String SPLASH_SCREEN = 'SPLASH_SCREEN';
 const String SIGNIN_SCREEN = 'SIGNIN_SCREEN';
