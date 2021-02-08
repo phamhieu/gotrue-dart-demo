@@ -36,7 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   void _onSignOutPress(BuildContext context) async {
     final response = await gotrueClient.signOut();
-    if (response.error == null) {
+    if (response.error != null) {
       alertModal.show(context,
           title: 'Sign out failed', message: response.error.message);
       _btnController.reset();
