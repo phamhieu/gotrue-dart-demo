@@ -4,6 +4,7 @@ import 'package:gotrue_dart_example/Screens/Signin/signin_screen.dart';
 import 'package:gotrue_dart_example/components/alert_modal.dart';
 import 'package:gotrue_dart_example/components/rounded_button.dart';
 import 'package:gotrue_dart_example/constants.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -16,6 +17,8 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  final RoundedLoadingButtonController _btnController =
+      new RoundedLoadingButtonController();
   final String _appBarTitle;
   User user;
 
@@ -36,6 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     if (response.error == null) {
       alertModal.show(context,
           title: 'Sign out failed', message: response.error.message);
+      _btnController.reset();
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove(PERSIST_SESSION_KEY);
@@ -69,12 +73,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(
               height: 35.0,
             ),
-            RoundedButton(
-              text: "Sign out",
-              press: () {
+            RoundedLoadingButton(
+              child: Text('Sign out',
+                  style: TextStyle(fontSize: 20, color: Colors.white)),
+              controller: _btnController,
+              onPressed: () {
                 _onSignOutPress(context);
               },
-            ),
+            )
           ],
         ),
       ),
