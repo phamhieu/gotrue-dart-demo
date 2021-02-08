@@ -25,9 +25,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.0
-  gotrue: ^0.0.1-dev.4
+  gotrue: ^0.0.1-dev.6
   shared_preferences: ^0.5.12+4
   rounded_loading_button: ^1.0.0
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:

@@ -60,7 +60,7 @@ class _SignUpState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 25.0),
+            SizedBox(height: 15.0),
             RoundedInputField(
               hintText: "Email address",
               onChanged: (value) {
@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUpScreen> {
                 });
               },
             ),
-            SizedBox(height: 25.0),
+            SizedBox(height: 15.0),
             RoundedPasswordField(
               onChanged: (value) {
                 setState(() {
@@ -77,9 +77,7 @@ class _SignUpState extends State<SignUpScreen> {
                 });
               },
             ),
-            SizedBox(
-              height: 35.0,
-            ),
+            SizedBox(height: 15.0),
             RoundedLoadingButton(
               child: Text('Sign up',
                   style: TextStyle(fontSize: 20, color: Colors.white)),
@@ -88,9 +86,7 @@ class _SignUpState extends State<SignUpScreen> {
                 _onSignUpPress(context);
               },
             ),
-            SizedBox(
-              height: 35.0,
-            ),
+            SizedBox(height: 35.0),
             LinkButton(
                 text: "Already have an Account ? Sign in",
                 press: () {
