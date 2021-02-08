@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:gotrue_dart_example/Screens/Welcome/welcome_screen.dart';
 import 'package:gotrue_dart_example/components/alert_modal.dart';
 import 'package:gotrue_dart_example/components/link_button.dart';
-import 'package:gotrue_dart_example/components/rounded_button.dart';
 import 'package:gotrue_dart_example/components/rounded_input_field.dart';
 import 'package:gotrue_dart_example/components/rounded_password_field.dart';
 import 'package:gotrue_dart_example/constants.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// ignore: must_be_immutable
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({Key key}) : super(key: key);
+
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUpScreen> {
+  final RoundedLoadingButtonController _btnController =
+      new RoundedLoadingButtonController();
   var email = '';
   var password = '';
 
@@ -18,11 +26,13 @@ class SignUpScreen extends StatelessWidget {
     if (response.error != null) {
       alertModal.show(context,
           title: 'Sign up failed', message: response.error.message);
+      _btnController.reset();
     } else if (response.data == null && response.user == null) {
       alertModal.show(context,
           title: 'Email verification required',
           message:
               "Please check your email and follow the instructions to verify your email address.");
+      _btnController.success();
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(PERSIST_SESSION_KEY, response.data.persistSessionString);
@@ -54,21 +64,27 @@ class SignUpScreen extends StatelessWidget {
             RoundedInputField(
               hintText: "Email address",
               onChanged: (value) {
-                email = value;
+                setState(() {
+                  email = value;
+                });
               },
             ),
             SizedBox(height: 25.0),
             RoundedPasswordField(
               onChanged: (value) {
-                password = value;
+                setState(() {
+                  password = value;
+                });
               },
             ),
             SizedBox(
               height: 35.0,
             ),
-            RoundedButton(
-              text: "Sign up",
-              press: () {
+            RoundedLoadingButton(
+              child: Text('Sign up',
+                  style: TextStyle(fontSize: 20, color: Colors.white)),
+              controller: _btnController,
+              onPressed: () {
                 _onSignUpPress(context);
               },
             ),

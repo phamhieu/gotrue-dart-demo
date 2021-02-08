@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gotrue_dart_example/components/alert_modal.dart';
 import 'package:gotrue_dart_example/components/link_button.dart';
-import 'package:gotrue_dart_example/components/rounded_button.dart';
 import 'package:gotrue_dart_example/components/rounded_input_field.dart';
 import 'package:gotrue_dart_example/constants.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-// ignore: must_be_immutable
-class PasswordRecoverScreen extends StatelessWidget {
+class PasswordRecoverScreen extends StatefulWidget {
+  PasswordRecoverScreen({Key key}) : super(key: key);
+
+  @override
+  _PasswordRecoverState createState() => _PasswordRecoverState();
+}
+
+class _PasswordRecoverState extends State<PasswordRecoverScreen> {
+  final RoundedLoadingButtonController _btnController =
+      new RoundedLoadingButtonController();
   var email = '';
 
   void _onPasswordRecoverPress(BuildContext context) async {
@@ -15,10 +23,12 @@ class PasswordRecoverScreen extends StatelessWidget {
       alertModal.show(context,
           title: 'Send password recovery failed',
           message: response.error.message);
+      _btnController.reset();
     } else {
       alertModal.show(context,
           title: 'Password recovery email sent',
           message: 'Please check your email for further instructions.');
+      _btnController.success();
     }
   }
 
@@ -38,15 +48,19 @@ class PasswordRecoverScreen extends StatelessWidget {
             RoundedInputField(
               hintText: "Email address",
               onChanged: (value) {
-                email = value;
+                setState(() {
+                  email = value;
+                });
               },
             ),
             SizedBox(
               height: 35.0,
             ),
-            RoundedButton(
-              text: "Send reset password instructions",
-              press: () {
+            RoundedLoadingButton(
+              child: Text('Send reset password instructions',
+                  style: TextStyle(fontSize: 16, color: Colors.white)),
+              controller: _btnController,
+              onPressed: () {
                 _onPasswordRecoverPress(context);
               },
             ),
