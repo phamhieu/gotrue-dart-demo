@@ -1,3 +1,5 @@
+Check out the latest Supabase flutter demo at https://github.com/phamhieu/supabase-dart-demo
+
 # gotrue_dart_example
 
 A Flutter project to demo gotrue_dart client.
