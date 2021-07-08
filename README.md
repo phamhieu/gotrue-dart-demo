@@ -1,4 +1,4 @@
-Check out the latest Supabase flutter demo at https://github.com/phamhieu/supabase-dart-demo
+Check out the latest Supabase flutter demo at https://github.com/phamhieu/supabase-flutter-demo
 
 # gotrue_dart_example
 
